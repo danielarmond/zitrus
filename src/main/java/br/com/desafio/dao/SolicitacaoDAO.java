@@ -12,8 +12,8 @@ public class SolicitacaoDAO {
         this.entityManager = entityManager;
     }
 
-    public void cadastrar (Solicitacao pedido) {
-        this.entityManager.persist(pedido);
+    public void cadastrar (Solicitacao solicitacao) {
+        this.entityManager.persist(solicitacao);
 
     }
     public Solicitacao buscarPorId(Long id) {
@@ -30,4 +30,6 @@ public class SolicitacaoDAO {
         return entityManager.createQuery(jpql, Solicitacao.class).setParameter("nome", nome).getResultList();
 
     }
+
+
 }

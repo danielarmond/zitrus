@@ -12,4 +12,21 @@ public enum PermissaoEnum {
         this.valor = valor;
         this.descricao = descricao;
     }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public static PermissaoEnum fromValue(String valor) {
+        for (PermissaoEnum permissao : PermissaoEnum.values()) {
+            if (permissao.valor.equals(valor)) {
+                return permissao;
+            }
+        }
+        throw new IllegalArgumentException("Permissão inválida: " + valor);
+    }
 }

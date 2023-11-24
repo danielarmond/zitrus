@@ -19,4 +19,13 @@ public enum SexoEnum {
     public String getDescricao() {
         return descricao;
     }
+
+    public static SexoEnum fromValue(String valor) {
+        for (SexoEnum sexo : SexoEnum.values()) {
+            if (sexo.valor.equals(valor)) {
+                return sexo;
+            }
+        }
+        throw new IllegalArgumentException("Valor inválido: " + valor);
+    }
 }
