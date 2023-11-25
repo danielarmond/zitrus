@@ -33,7 +33,6 @@ public class Solicitacao {
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
-        this.permissao = permissao;
     }
 
     public Solicitacao(Procedimento procedimento, int idade, SexoEnum sexo) {

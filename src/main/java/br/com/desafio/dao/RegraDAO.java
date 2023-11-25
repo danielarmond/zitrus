@@ -27,7 +27,7 @@ public class RegraDAO {
             Query query = entityManager.createQuery(jpql)
                     .setParameter("procedimentoId", solicitacao.getProcedimento().getId())
                     .setParameter("idade", solicitacao.getIdade())
-                    .setParameter("sexo", solicitacao.getSexo().getValor().toString());
+                    .setParameter("sexo", solicitacao.getSexo());
 
             Long count = (Long) query.getSingleResult();
 

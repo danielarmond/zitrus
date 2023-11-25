@@ -6,6 +6,7 @@ import br.com.desafio.model.Procedimento;
 import br.com.desafio.model.Solicitacao;
 import br.com.desafio.model.enums.SexoEnum;
 import br.com.desafio.util.ConnectionFactory;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,6 +45,15 @@ public class SolicitacaoServlet extends HttpServlet {
             solicitacaoDAO.criaSolicitacao(solicitacao, autorizacaoDaSolicitacao);
         }
 
+        populaIndex(request, response);
+    }
 
+    private void populaIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("procedimentos", procedimentoDAO.buscarTodos());
+        request.setAttribute("sexos", SexoEnum.values());
+        request.setAttribute("solicitacoes", solicitacaoDAO.buscarTodos());
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+        requestDispatcher.forward(request, response);
     }
 }
