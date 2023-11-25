@@ -59,10 +59,10 @@
 <table class="mt-3 table table-hover caption-top">
     <caption class="h4">Solicitações</caption>
     <thead class="table-light">
-    <th>Procedimento</th>
     <th>Nome</th>
     <th>Idade</th>
     <th>Sexo</th>
+    <th>Procedimento</th>
     <th>Status</th>
     </thead>
     <tbody>
@@ -76,7 +76,7 @@
     <tr>
     <td><%= solicitacao.getNome() %></td>
     <td><%= solicitacao.getIdade() %></td>
-    <td><%= solicitacao.getSexo().getDescricao() %></td>
+    <td><%= solicitacao.getSexo().getValor() %></td>
     <td><%= solicitacao.getProcedimento().getNome() %></td>
     <td><%= solicitacao.getPermissao().getDescricao() %></td>
     </tr>

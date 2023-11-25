@@ -36,6 +36,12 @@ public class Solicitacao {
         this.permissao = permissao;
     }
 
+    public Solicitacao(Procedimento procedimento, int idade, SexoEnum sexo) {
+        this.procedimento = procedimento;
+        this.idade = idade;
+        this.sexo = sexo;
+    }
+
     public Solicitacao() {
 
     }
@@ -84,7 +90,7 @@ public class Solicitacao {
         return permissao;
     }
 
-    public void setAutorizado(PermissaoEnum permissao) {
+    public void setPermissao(PermissaoEnum permissao) {
         this.permissao = permissao;
     }
 }

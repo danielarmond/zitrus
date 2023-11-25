@@ -1,5 +1,6 @@
 package br.com.desafio.servlet;
 import br.com.desafio.dao.ProcedimentoDAO;
+import br.com.desafio.dao.RegraDAO;
 import br.com.desafio.dao.SolicitacaoDAO;
 import br.com.desafio.model.Procedimento;
 import br.com.desafio.model.Solicitacao;
@@ -11,10 +12,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+
 
 import br.com.desafio.model.enums.PermissaoEnum;
-import jakarta.servlet.RequestDispatcher;
 import javax.persistence.EntityManager;
 
 
@@ -24,33 +24,26 @@ public class SolicitacaoServlet extends HttpServlet {
     EntityManager entityManager = ConnectionFactory.getEntityManager();
     SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO(entityManager);
     ProcedimentoDAO procedimentoDAO = new ProcedimentoDAO(entityManager);
+    RegraDAO regraDAO = new RegraDAO(entityManager);
 
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Procedimento procedimento = procedimentoDAO.buscarPorId(Long.parseLong(request.getParameter("procedimento")));
         String nome = request.getParameter("nome");
         int idade = Integer.parseInt(request.getParameter("idade"));
         SexoEnum sexo = SexoEnum.fromValue(request.getParameter("sexo"));
-        Procedimento procedimento = procedimentoDAO.buscarPorId(Long.parseLong(request.getParameter("procedimento")));
 
-        Solicitacao solicitacao = new Solicitacao(procedimento, nome, idade, sexo, PermissaoEnum.PERMITIDO);
-        entityManager.getTransaction().begin();
-        solicitacaoDAO.cadastrar(solicitacao);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        Solicitacao solicitacao = new Solicitacao(procedimento, nome, idade, sexo, PermissaoEnum.NAO_PERMITIDO);
+        boolean autorizacaoDaSolicitacao = regraDAO.validaSolicitacao(solicitacao);
+
+        if (request.getParameter("id") != null && !request.getParameter("id").isEmpty()) {
+            solicitacao.setId(Long.parseLong(request.getParameter("id")));
+            solicitacaoDAO.alterarSolicitacao(solicitacao, autorizacaoDaSolicitacao);
+        } else {
+            solicitacaoDAO.criaSolicitacao(solicitacao, autorizacaoDaSolicitacao);
+        }
+
+
     }
-
-
-    private void PopulaHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        List<Solicitacao> solicitacoes = solicitacaoDAO.buscarTodos();
-        request.setAttribute("procedimentos", procedimentoDAO.buscarTodos());
-        request.setAttribute("sexos", SexoEnum.values());
-        request.setAttribute("solicitacoes", solicitacoes);
-
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
-        requestDispatcher.forward(request, response);
-    }
-
 }
