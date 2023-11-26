@@ -30,6 +30,7 @@ public class SolicitacaoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
         Procedimento procedimento = procedimentoDAO.buscarPorId(Long.parseLong(request.getParameter("procedimento")));
         String nome = request.getParameter("nome");
         int idade = Integer.parseInt(request.getParameter("idade"));
@@ -46,6 +47,9 @@ public class SolicitacaoServlet extends HttpServlet {
         }
 
         populaIndex(request, response);
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Procedimento inválido. Solicitação negada.");
+        }
     }
 
     private void populaIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

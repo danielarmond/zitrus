@@ -3,6 +3,8 @@
 <%@ page import="br.com.desafio.dao.SolicitacaoDAO" %>
 <%@ page import="br.com.desafio.util.ConnectionFactory" %>
 <%@ page import="javax.persistence.EntityManager" %>
+<%@ page import="br.com.desafio.model.enums.SexoEnum" %>
+
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -16,11 +18,15 @@
 <body>
 <jsp:include page="header.jsp"/>
 
-<h3>Nova Solicitação</h3>
 
 
-<div class="row">
-    <div class="col-md-4">
+<div class="container">
+
+    <h4>Nova Solicitação</h4>
+
+
+    <div class="row justify-content-start">
+        <div class="col-md-6">
         <form data-bitwarden-watching="1" action="solicitacao" method="POST">
 
             <div class="form-group">
@@ -29,29 +35,32 @@
 
             </div>
 
-            <div class="form-group">
+            <div class="form-group" >
                 <label class="col-form-label mt-4" for="idade">Idade:</label>
                 <input type="text" class="form-control" placeholder="Idade" name="idade" id="idade">
 
             </div>
 
             <div class="form-group">
-                <label class="col-form-label mt-4" for="sexo">Sexo:</label>
-                <input type="text" class="form-control" placeholder="Sexo" name="sexo" id="sexo">
-
+                <label class="form-label mt-4" for="sexo">Sexo:</label>
+                <select class="form-control" name="sexo" id="sexo">
+                    <% for (SexoEnum sexoEnum : SexoEnum.values()) { %>
+                    <option value="<%= sexoEnum.getValor() %>"><%= sexoEnum.getDescricao() %></option>
+                    <% } %>
+                </select>
             </div>
 
             <div class="form-group">
                 <label class="col-form-label mt-4" for="procedimento">Procedimento:</label>
-                <input type="text" class="form-control" placeholder="Procedimento" name="procedimento" id="procedimento">
+                <input type="text" class="form-control" style="margin-bottom: 20px" placeholder="Procedimento" name="procedimento" id="procedimento">
 
             </div>
-
 
             <button type="submit" class="btn btn-success" id="cadastrarSolicitacao">Solicitar</button>
 
           </form>
 
+        </div>
 
     </div>
 </div>
