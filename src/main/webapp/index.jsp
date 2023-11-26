@@ -58,7 +58,7 @@
 
 <table class="mt-3 table table-hover caption-top">
     <caption class="h4">Solicitações</caption>
-    <thead class="table-light">
+    <thead class="table-dark">
     <th>Nome</th>
     <th>Idade</th>
     <th>Sexo</th>
