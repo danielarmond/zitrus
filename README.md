@@ -23,7 +23,7 @@ No MySQL, criar o schema "zitrus".
 
 Na pasta raiz do projeto, executar no terminal o comando "mvn clean install -U" para baixar as dependências, criar e inserir dados nas tabelas.
 
-O Intellij, Acesse "Run >> Edit Configurations". Selecione Tomcat Server.
+No Intellij, Acesse "Run >> Edit Configurations". Selecione Tomcat Server.
 O projeto, em desenvolvimento, rodou com as seguintes configurações:
 
 Server: Tomcat 10.1.16
