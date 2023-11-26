@@ -1,16 +1,21 @@
 <h2>Desafio Ziturs - Java Servlet</h2>
 
+
+
 <h3>Tecnologias Utilizadas:</h3>
 
-Intellij
-Java 19
-Maven
- MySQL
-JPA + JPQL
-Liquibase
+
+
+Intellij,
+Java 19,
+Maven,
+ MySQL,
+JPA + JPQL,
+Liquibase,
 Tomcat
 
 <h3>Estrutura da Aplicação:</h3>
+
 
 Banco de Dados - Temos 3 tabelas em um banco MySQL, solicitações, procedimentos existentes e uma com a regra de negócio, com os perfis aprovados.
 Código Java - Usando JPA / EntityManager e JPQL para tratar a camada de persistência e consultas, respectivamente. Temos uma classe Servlet para intermediar as requisições.
@@ -18,6 +23,7 @@ View - A interface de usuário nessa aplicação é uma página simples em HTML 
 
 
 <h3>Como executar a aplicação:</h3>
+
 
 No MySQL, criar o schema "zitrus".
 
