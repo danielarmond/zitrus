@@ -33,7 +33,7 @@
 <h2>Como executar a aplicação:</h2>
 
 
-+ No MySQL, criar o schema "zitrus".
++ No MySQL, criar o schema "zitrus". (porta 3306, user: root, password:root)
 
 + Na pasta raiz do projeto, executar no terminal o comando "mvn clean install -U" para baixar as dependências, criar e inserir dados nas tabelas.
 
